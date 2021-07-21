@@ -40,6 +40,13 @@ h1{
     
 }
 
+.indicators{
+    margin: 2px;
+    display: flex;
+    flex-direction: row;
+}
+
+
 #spawn{
     background-color: darkgreen;
     width: 100px;
@@ -50,14 +57,19 @@ h1{
 
     margin: 35px 0 0 0;
     display: flex;
-    align-items: center;
+    flex-direction: row;
     justify-content: center;
+    align-items: center;
+    text-align: center;
 }
+
+
+
 
 button{
     height: 73px;
     width: 73px;
-    display: block;
+    display: flex;
     border-radius: 50%;
     margin: 0 10px;
     font-family: 'Krona One', sans-serif;
