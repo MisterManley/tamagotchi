@@ -12,17 +12,24 @@
     <script defer src="./js/app.js"></script>
 </head>
 <body>
-    <h1>SPACE PET <br /><span id = "banner2">ALBERT THE SLIME!</span></h1>
+    <h1>SPACE PET <br /><span id = "banner2">slime jack!</span></h1>
 
     <div id = "charWindow">
         <img  id = "charImg" src="/img/pika001.jpg">
     </div>
 
     <div class="controls">
-        <button id = "indi_happy">happy?</button>
-        <button id = "indi_hungry">hungry?</button>
-        <button id = "indi_sleepy">tired?</button>
-        <button id = "indi_party">party!</button>
+        <div class = "indibox" id = "indi_happy">happy?
+        <br /><span id= "happy_score">0</span>%
+        </div>
+        <div class = "indibox" id = "indi_hungry">hungry?
+        <br /><span id= "hunger_score">0</span>%            </div>
+        <div class = "indibox" id = "indi_sleepy">tired?
+        <br /><span id= "fatigue_score">0</span>%    
+        </div>
+        <div class = "indibox" id = "indi_party">age
+        <br /><span id= "evol_score">0</span>
+        </div>
     </div>
 
     <div class="controls">
@@ -30,7 +37,7 @@
         <button id = "play">PLAY</button>
         <button id = "snack">SNACK</button>
         <button id = "lights">LIGHTS</button>
-        <button id = "brewski">BEER ME!</button>
+        
 
     </div>
     

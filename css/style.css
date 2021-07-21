@@ -40,10 +40,23 @@ h1{
     
 }
 
-.indicators{
-    margin: 2px;
-    display: flex;
-    flex-direction: row;
+.indibox{
+    display:block;
+    height: 75px;
+    width: 75px;
+    margin: 0 10px;
+    text-align: center;
+    font-family: 'Krona One', sans-serif;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    opacity: 70%;
+    border-radius: 40%;
+
+}
+
+.indibox span{
+    font-size: 30px;
 }
 
 
@@ -81,3 +94,4 @@ button{
     align-items: center;
     text-align: center;
 }
+
