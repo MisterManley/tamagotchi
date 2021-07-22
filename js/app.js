@@ -5,14 +5,16 @@ let happiness = 80;
 let age = 1;
 
 
-
+function buttonTest(){
+    console.log("buttonClicked")
+}
 
 class monster {
-    (hunger, fatigue, happiness, age){
+    constructor(hunger, fatigue, happiness, age){
             
-            this.hunger = 65;
-            this.fatigue = 45;
-            this.happiness = 80;
+            this.hunger = hunger;
+            this.fatigue = fatigue;
+            this.happiness = happiness;
             this.age = age;
     }
 
@@ -22,5 +24,16 @@ class monster {
 
 }
 
-let create = document.getElementById();
-create.addEventListener("click", );
+//CREATE button STARTS the game
+let create = document.getElementById("spawn");
+let spawn = create.addEventListener("click", buttonTest);
+
+//PLAY keeps your monster's health high
+let entertain = document.getElementById("play");
+let play = entertain.addEventListener("click", buttonTest)
+
+let giveSnack = document.getElementById("snack");
+let feed = giveSnack.addEventListener("click", buttonTest)
+
+let put2Bed = document.getElementById("lights");
+let sleep = put2Bed.addEventListener("click", buttonTest)
