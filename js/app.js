@@ -19,6 +19,8 @@ class monster {
             this.age = age;
     }
 
+    
+
 
 
 
@@ -77,6 +79,21 @@ function wakeUp(){
 
 
 
+if(Frank.happiness < 28){
+    document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie003.png'>";
+    document.getElementById("results").textContent = "Your creature needs some attention.";
+    
+        
+} else if(Frank.hunger > 73){
+        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie006.png'>";
+        document.getElementById("results").textContent = "Your creature needs something to eat."
+        
+}
+
+
+
+
+
 
 
 
@@ -98,28 +115,32 @@ function spawnGame(name){        //passive game engine reduces or increases
         document.getElementById("fatigue_score").textContent = Frank.fatigue;
         document.getElementById("evol_score").textContent = Frank.age;
         
+        document.getElementById("charWindow").innerHTML = "<img  id='charImg' src='img/frankie008.png'>";
     
         // display the new count on the page
 
         //COUNTER "you can't exceed these numbers" test suite
         //hopefully soon to be the COUNTER GAME FUNCTIONALITY SUITE
 
+        
+
         if(Frank.happiness > 99){
             Frank.happiness = 99
         }else if(Frank.happiness < 1){
             Frank.happiness = 1;
+            
         } 
-        else{
-            Frank.happiness = Frank.happiness;
-        }
+
+        
 
         if(Frank.hunger < 1){
             Frank.hunger = 1;
         }else if (Frank.hunger > 99){
             Frank.hunger = 99;
-        }else{
-            Frank.hunger = Frank.hunger;
         }
+        
+
+        
 
         if(Frank.fatigue < 1){
             Frank.fatigue = 1;
@@ -134,12 +155,16 @@ function spawnGame(name){        //passive game engine reduces or increases
         }else{
             Frank.age = Frank.age;
         }
+
         
-      }, 300);
+        
+      }, 500);
 
 
 
 }
+
+
 
 
 
@@ -173,13 +198,14 @@ let wakey = document.getElementById("lights_on");
 wakey.addEventListener("click", wakeUp)
 
 //IF - at the end of your stewardship of your creature (age),
-//they're health is at least %98.5, power (anti-fatigue) is more than 75% (less than %25) and happiness is at least %80, your creature 
-//will morph into Karloff
+//they're health is at least %98.5, power (anti-fatigue) is 
+//more than 75% (less than %25) and happiness is at least %80, your creature 
+//will morph into SuperStompy Frank
 
 
 //////// - deployment notes - ////////
 
-//$ git checkout -b gh -pages
+//$ git checkout -b gh-pages
 //$ git push origin gh-pages
 
 //https://<user-name>.github.io/tamagotchi
