@@ -92,7 +92,7 @@ function wakeUp(){
 
 function spawnGame(name){        //passive game engine reduces or increases
                     //based on increment
-    Frank = new monster("Frank", 60, 45, 77, 1);
+    Frank = new monster("Frank", 60, 45, 72, 1);
     interval = setInterval(function() {
         // increase the count by one
         Frank.hunger++;
@@ -127,7 +127,7 @@ function spawnGame(name){        //passive game engine reduces or increases
         if(Frank.hunger < 1){
             Frank.hunger = 1;
         }else if (Frank.hunger > 99){
-            Frank.hunger = 99;
+            Frank.hunger = 100;
         }
         
 
@@ -140,28 +140,51 @@ function spawnGame(name){        //passive game engine reduces or increases
         }
 
         if (Frank.age > 99){
-            Frank.age = 99
+            Frank.age = 100
         }else{
             Frank.age = Frank.age;
         }
 
-    if(Frank.hunger > 73){
-        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie006.png'>";
-        document.getElementById("results").textContent = `${Frank.name} needs something to eat.`;
-        
-        }
+     
 
+    if(Frank.hunger > 73 && Frank.hunger < 98){
+            document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie006.png'>";
+            document.getElementById("results").textContent = `${Frank.name} needs something to eat.`;
+    }
+    
     if(Frank.fatigue > 80){
         document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie008.png'>";
         document.getElementById("results").textContent = `${Frank.name} needs some rest.`;
-        
-
     }
     
     if(Frank.happiness < 28){
         document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie003.png'>";
         document.getElementById("results").textContent = `${Frank.name} needs some attention.`;
     }
+
+    if(Frank.happiness > 85){
+        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie004.png'>";
+        document.getElementById("results").textContent = `${Frank.name} is really happy you played with them.`;
+    }
+
+    if(Frank.hunger < 15){
+        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie004.png'>";
+        document.getElementById("results").textContent = `${Frank.name} is feeling supercharged! More food, master!`;
+    }
+
+    if(Frank.hunger == 100){
+        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie007.png'>";
+        document.getElementById("results").textContent = `${Frank.name} is dead. Way to go, Fronk'N'Steen!`;
+        clearInterval(interval);
+    }
+
+    if(Frank.age == 100 && Frank.hunger < 2 && Frank.fatigue < 15 && Frank.happiness > 65){
+        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie010.png'>";
+        document.getElementById("results").textContent = `${Frank.name} has morphed into Superfrank! GOOD JOB, DOCTOR!`;
+        clearInterval(interval);
+    }
+
+     
     
     
     
@@ -169,7 +192,7 @@ function spawnGame(name){        //passive game engine reduces or increases
 
         
         
-      }, 500);
+      }, 1500);
 
 
 
