@@ -79,16 +79,7 @@ function wakeUp(){
 
 
 
-if(Frank.happiness < 28){
-    document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie003.png'>";
-    document.getElementById("results").textContent = "Your creature needs some attention.";
-    
-        
-} else if(Frank.hunger > 73){
-        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie006.png'>";
-        document.getElementById("results").textContent = "Your creature needs something to eat."
-        
-}
+
 
 
 
@@ -101,7 +92,7 @@ if(Frank.happiness < 28){
 
 function spawnGame(name){        //passive game engine reduces or increases
                     //based on increment
-    Frank = new monster("Frank", 60, 45, 80, 1);
+    Frank = new monster("Frank", 60, 45, 77, 1);
     interval = setInterval(function() {
         // increase the count by one
         Frank.hunger++;
@@ -115,7 +106,7 @@ function spawnGame(name){        //passive game engine reduces or increases
         document.getElementById("fatigue_score").textContent = Frank.fatigue;
         document.getElementById("evol_score").textContent = Frank.age;
         
-        document.getElementById("charWindow").innerHTML = "<img  id='charImg' src='img/frankie008.png'>";
+        document.getElementById("charWindow").innerHTML = "<img  id='charImg' src='img/frankie001.png'>";
     
         // display the new count on the page
 
@@ -146,8 +137,6 @@ function spawnGame(name){        //passive game engine reduces or increases
             Frank.fatigue = 1;
         }else if (Frank.fatigue  > 99){
             Frank.fatigue = 99
-        }else{
-            Frank.fatigue = Frank.fatigue;
         }
 
         if (Frank.age > 99){
@@ -155,6 +144,28 @@ function spawnGame(name){        //passive game engine reduces or increases
         }else{
             Frank.age = Frank.age;
         }
+
+    if(Frank.hunger > 73){
+        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie006.png'>";
+        document.getElementById("results").textContent = `${Frank.name} needs something to eat.`;
+        
+        }
+
+    if(Frank.fatigue > 80){
+        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie008.png'>";
+        document.getElementById("results").textContent = `${Frank.name} needs some rest.`;
+        
+
+    }
+    
+    if(Frank.happiness < 28){
+        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie003.png'>";
+        document.getElementById("results").textContent = `${Frank.name} needs some attention.`;
+    }
+    
+    
+    
+    
 
         
         
