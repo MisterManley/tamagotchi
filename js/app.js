@@ -18,7 +18,12 @@ class monster {
             this.happiness = happiness;
             this.age = age;
     }
-}
+
+
+
+
+
+} //end MONSTER
 
 happyScore.textContent = this.happiness;
 hungerScore.textContent = this.hunger;
@@ -31,22 +36,14 @@ function feedFrank(){
     Frank.hunger-- 
     document.getElementById("hunger_score").textContent = Frank.hunger
 
-        // if(this.hunger <= 0){
-        //     this.hunger = 0;
-        // }else{
-        //     this.hunger = this.hunger;
-        // }
+        
 }
 
 function playFrank(){
 
     Frank.happiness++ 
     document.getElementById("happy_score").textContent = Frank.happiness
-        // if(this.happiness > 100){
-        //     this.happiness = 100
-        // } else{
-        //     this.happiness = this.happiness;
-        // }
+        
         
     
 }
@@ -62,7 +59,11 @@ function put2Sleep(){
 
         // console.log("button fired sleep")
 
-}//This one has to be a toggle. When frank is asleep, you can't feed him or play with him, so FEED AND PLAY need to be set to DISABLED. ALSO, because the life conditional is set to 1000000, Frank can't sleep longer than 15000 ms.
+}
+
+//So, the original toggle idea didn't work, but adding a second button  
+//for waking Frank up with the right code (see below) gets the feed
+//and play buttons working again
 
 function wakeUp(){
 
@@ -99,11 +100,48 @@ function spawnGame(name){        //passive game engine reduces or increases
         
     
         // display the new count on the page
-        
-      }, 1000);
 
-      
+        //COUNTER "you can't exceed these numbers" test suite
+        //hopefully soon to be the COUNTER GAME FUNCTIONALITY SUITE
+
+        if(Frank.happiness > 99){
+            Frank.happiness = 99
+        }else if(Frank.happiness < 1){
+            Frank.happiness = 1;
+        } 
+        else{
+            Frank.happiness = Frank.happiness;
+        }
+
+        if(Frank.hunger < 1){
+            Frank.hunger = 1;
+        }else if (Frank.hunger > 99){
+            Frank.hunger = 99;
+        }else{
+            Frank.hunger = Frank.hunger;
+        }
+
+        if(Frank.fatigue < 1){
+            Frank.fatigue = 1;
+        }else if (Frank.fatigue  > 99){
+            Frank.fatigue = 99
+        }else{
+            Frank.fatigue = Frank.fatigue;
+        }
+
+        if (Frank.age > 99){
+            Frank.age = 99
+        }else{
+            Frank.age = Frank.age;
+        }
+        
+      }, 300);
+
+
+
 }
+
+
 
 
 
