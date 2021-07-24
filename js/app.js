@@ -5,9 +5,37 @@ let fatigueScore = document.getElementById("fatigue_score");
 let ageCounter = document.getElementById("evol_score")
 let Frank = null;
 
-// function buttonTest(){
-//     console.log("buttonClicked")
-// } - helper function, now disabled
+function scoreLimits(){
+    if(Frank.happiness > 99){
+        Frank.happiness = 100
+    }
+    
+    if(Frank.happiness < 1){
+        Frank.happiness = 0;
+    } 
+
+    if(Frank.hunger < 1){
+        Frank.hunger = 0;
+    }
+    
+    if (Frank.hunger > 99){
+        Frank.hunger = 100;
+    }
+    
+    if(Frank.fatigue < 1){
+        Frank.fatigue = 1;
+    }
+    
+    if (Frank.fatigue  > 99){
+        Frank.fatigue = 100
+    }
+
+    if (Frank.age > 99){
+        Frank.age = 100
+    }
+}
+
+// ^ Limits counters to the range of 0 to 100
 
 class monster {
     constructor(name, hunger, fatigue, happiness, age){
@@ -35,31 +63,40 @@ fatigueScore.textContent = this.fatigue;
 
 
 function feedFrank(){
-    Frank.hunger-- 
-    document.getElementById("hunger_score").textContent = Frank.hunger
+    Frank.hunger--; 
+    document.getElementById("hunger_score").textContent = Frank.hunger;
+    scoreLimits();
 
         
 }
 
 function playFrank(){
 
-    Frank.happiness++ 
-    document.getElementById("happy_score").textContent = Frank.happiness
+    Frank.happiness++; 
+    document.getElementById("happy_score").textContent = Frank.happiness;
+    scoreLimits();
         
         
     
 }
 
 function put2Sleep(){
-    Frank.fatigue--
+    
     document.getElementById("fatigue_score").textContent = Frank.fatigue
     entertain.disabled = true;
     giveSnack.disabled = true;
-        // if(this.fatigue += 15){
-        //     this.wakeUp();
-        // } else {this.fatigue = this.fatigue}
 
-        // console.log("button fired sleep")
+    sleepyMonster = setInterval(function(){
+        Frank.fatigue -= 2.75;
+        Frank.hunger -= 2.25;
+        Frank.happiness += 1.55
+    
+        scoreLimits();
+        
+    
+    }, 1400)
+    
+    scoreLimits();
 
 }
 
@@ -72,8 +109,8 @@ function wakeUp(){
     Frank.fatigue++
     entertain.disabled = false;
     giveSnack.disabled = false;
-
-    // console.log("button fired wakeup")
+    clearInterval(sleepyMonster);
+    scoreLimits();
 
 }
 
@@ -110,40 +147,14 @@ function spawnGame(name){        //passive game engine reduces or increases
     
         // display the new count on the page
 
+        
+
         //COUNTER "you can't exceed these numbers" test suite
         //hopefully soon to be the COUNTER GAME FUNCTIONALITY SUITE
 
         
 
-        if(Frank.happiness > 99){
-            Frank.happiness = 99
-        }else if(Frank.happiness < 1){
-            Frank.happiness = 1;
-            
-        } 
-
-        
-
-        if(Frank.hunger < 1){
-            Frank.hunger = 1;
-        }else if (Frank.hunger > 99){
-            Frank.hunger = 100;
-        }
-        
-
-        
-
-        if(Frank.fatigue < 1){
-            Frank.fatigue = 1;
-        }else if (Frank.fatigue  > 99){
-            Frank.fatigue = 99
-        }
-
-        if (Frank.age > 99){
-            Frank.age = 100
-        }else{
-            Frank.age = Frank.age;
-        }
+    scoreLimits();
 
      
 
@@ -183,6 +194,8 @@ function spawnGame(name){        //passive game engine reduces or increases
         document.getElementById("results").textContent = `${Frank.name} has morphed into Superfrank! GOOD JOB, DOCTOR!`;
         clearInterval(interval);
     }
+
+
 
      
     
