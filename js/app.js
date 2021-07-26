@@ -64,7 +64,7 @@ function feedFrank(){
     Frank.hunger--; 
     document.getElementById("hunger_score").textContent = Frank.hunger.toFixed();
     scoreLimits();
-
+    document.getElementById("charWindow").innerHTML = "<img  id='charImg' src='img/frankie011.png'>";
         
 }
 
@@ -153,7 +153,7 @@ function spawnGame(name){        //passive game engine reduces or increases
 
     if(Frank.hunger > 73 && Frank.hunger < 98){
             document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie006.png'>";
-            document.getElementById("results").textContent = `${Frank.name} needs something to eat.`;
+            document.getElementById("results").textContent = `${Frank.name} needs something to eat. <br /> FEED THEM!`;
     }
     
     if(Frank.fatigue > 80){
@@ -168,17 +168,17 @@ function spawnGame(name){        //passive game engine reduces or increases
 
     if(Frank.happiness < 58){
         document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie005.png'>";
-        document.getElementById("results").textContent = `${Frank.name} says, "Play with me, Master`;
+        document.getElementById("results").textContent = `${Frank.name} says, "Play with me, Master! <br /> Please!`;
     }
 
     if(Frank.happiness > 85){
         document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie004.png'>";
-        document.getElementById("results").textContent = `${Frank.name} is really happy you played with them. Go ahead and play with them some more.`;
+        document.getElementById("results").textContent = `${Frank.name} is really happy you played with them. <br /> Go ahead and play with them some more.`;
     }
 
     if(Frank.hunger < 15){
         document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie004.png'>";
-        document.getElementById("results").textContent = `${Frank.name} is feeling supercharged! More food, master!`;
+        document.getElementById("results").textContent = `${Frank.name} is feeling supercharged! <br />More food, master!`;
     }
 
     if(Frank.hunger == 100){
@@ -202,17 +202,6 @@ function spawnGame(name){        //passive game engine reduces or increases
       document.getElementById("charWindow").innerHTML = "<img  id='charImg' src='img/frankie001.png'>";
 
 }
-
-
-
-
-
-
-
-// if(age === 1000000  && hunger >= 98.5 && fatigue <= 35 happiness => 85){
-
-// }
-
 
 
 //CREATE button STARTS the game
