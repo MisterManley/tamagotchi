@@ -101,7 +101,7 @@ class monster {
 
 function feedFrank(){
     Frank.hunger--; 
-    document.getElementById("hunger_score").textContent = Frank.hunger;
+    document.getElementById("hunger_score").textContent = Frank.hunger.toFixed(2);
     
     
     document.getElementById("charWindow").innerHTML = "<img  id='charImg' src='img/frankie011.png'>";
@@ -114,7 +114,7 @@ function playFrank(){
 
     Frank.happiness++; 
     
-    document.getElementById("happy_score").textContent = Frank.happiness;
+    document.getElementById("happy_score").textContent = Frank.happiness.toFixed(2);
     scoreLimits();
         
  
@@ -123,7 +123,7 @@ function playFrank(){
 
 function put2Sleep(){
     
-    document.getElementById("fatigue_score").textContent = Frank.fatigue;
+    document.getElementById("fatigue_score").textContent = Frank.fatigue.toFixed(2);
     
     entertain.disabled = true;
     giveSnack.disabled = true;
