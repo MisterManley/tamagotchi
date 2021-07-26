@@ -5,37 +5,76 @@ let fatigueScore = document.getElementById("fatigue_score");
 let ageCounter = document.getElementById("evol_score")
 let Frank = null;
 
+//CREATE button STARTS the game
+let create = document.getElementById("spawn");
+create.addEventListener("click", spawnGame);
+
+//PLAY keeps your monster's morale (happiness) high
+let entertain = document.getElementById("play");
+entertain.addEventListener("click", playFrank)
+
+//SNACKS are the most direct way of keeping their
+//health high, by keeping hunger low
+let giveSnack = document.getElementById("snack");
+giveSnack.addEventListener("click", feedFrank)
+
+//SLEEP reduces monster fatigue and also lets their
+//health recover during
+let put2Bed = document.getElementById("lights_out");
+put2Bed.addEventListener("click", put2Sleep)
+
+let wakey = document.getElementById("lights_on");
+wakey.addEventListener("click", wakeUp)
+
+function buttonsOff(){
+    entertain.disabled = true;
+    giveSnack.disabled = true;
+    put2Bed.disabled = true;
+    wakey.disabled = true;
+}
+
+function buttonsOn(){
+entertain.disabled = false;
+giveSnack.disabled = false;
+put2Bed.disabled = false;
+wakey.disabled = false;
+}
+
 function scoreLimits(){
-    if(Frank.happiness > 99){
-        Frank.happiness = 100
+    if(Frank.happiness >= 100){
+        Frank.happiness = 99;
     }
     
-    if(Frank.happiness < 1){
-        Frank.happiness = 0;
+    if(Frank.happiness <= 0){
+        Frank.happiness = 1;
+        
     } 
 
-    if(Frank.hunger < 1){
-        Frank.hunger = 0;
+    if(Frank.hunger <= 0){
+        Frank.hunger = 1 ;
     }
     
-    if (Frank.hunger > 99){
+    if (Frank.hunger >= 100){
         Frank.hunger = 100;
+
     }
     
-    if(Frank.fatigue < 1){
+    if(Frank.fatigue <= 0){
         Frank.fatigue = 1;
     }
     
-    if (Frank.fatigue  > 99){
+    if (Frank.fatigue >= 100){
         Frank.fatigue = 100
     }
 
-    if (Frank.age > 99){
+    if (Frank.age >= 100){
         Frank.age = 100
     }
 
     
 }
+
+buttonsOff();
 
 // ^ Limits counters to the range of 0 to 100
 
@@ -62,38 +101,43 @@ class monster {
 
 function feedFrank(){
     Frank.hunger--; 
-    document.getElementById("hunger_score").textContent = Frank.hunger.toFixed();
-    scoreLimits();
+    document.getElementById("hunger_score").textContent = Frank.hunger;
+    
+    
     document.getElementById("charWindow").innerHTML = "<img  id='charImg' src='img/frankie011.png'>";
-        
+    scoreLimits();      
 }
+
+
 
 function playFrank(){
 
     Frank.happiness++; 
-    document.getElementById("happy_score").textContent = Frank.happiness.toFixed();
+    
+    document.getElementById("happy_score").textContent = Frank.happiness;
     scoreLimits();
         
-        
+ 
     
 }
 
 function put2Sleep(){
     
-    document.getElementById("fatigue_score").textContent = Frank.fatigue.toFixed()
+    document.getElementById("fatigue_score").textContent = Frank.fatigue;
     
     entertain.disabled = true;
     giveSnack.disabled = true;
 
     sleepyMonster = setInterval(function(){
-        Frank.fatigue -= 2.75;
-        Frank.hunger -= 2.25;
-        Frank.happiness += 1.55
+        Frank.fatigue -= 2.00;
+        Frank.hunger -= 0.35;
+        Frank.happiness += 1.15
     
         scoreLimits();
        
     
-    }, 1400)
+    }, 800)
+        
         document.getElementById("charWindow").innerHTML = "<img  id='charImg' src='img/frankie009.png'>";
     
     scoreLimits();
@@ -107,7 +151,7 @@ function put2Sleep(){
 function wakeUp(){
 
     
-    Frank.fatigue++
+    Frank.fatigue++;
     entertain.disabled = false;
     giveSnack.disabled = false;
     clearInterval(sleepyMonster);
@@ -118,10 +162,17 @@ function wakeUp(){
 
 
 
+function deadMonster(){
+    document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie007.png'>";
+    document.getElementById("results").innerHTML = `${Frank.name} is dead. <br />Way to go, Fronk'N'Steen!`;
+}
 
 
-function spawnGame(name){        //passive game engine reduces or increases
-                    //based on increment
+
+function spawnGame(name){        
+
+    buttonsOn();
+    
     Frank = new monster("Frank", 60, 45, 72, 1);
     interval = setInterval(function() {
         // increase the count by one
@@ -149,81 +200,75 @@ function spawnGame(name){        //passive game engine reduces or increases
 
     scoreLimits();
 
-     
-
     if(Frank.hunger > 73 && Frank.hunger < 98){
             document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie006.png'>";
-            document.getElementById("results").textContent = `${Frank.name} needs something to eat. <br /> FEED THEM!`;
+            document.getElementById("results").innerHTML = `${Frank.name} needs something to eat. <br /> FEED THEM!`;
     }
     
-    if(Frank.fatigue > 80){
-        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie005.png'>";
-        document.getElementById("results").textContent = `${Frank.name} needs some rest.`;
+    if(Frank.happiness == 85){
+            document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie004.png'>";
+            document.getElementById("results").innerHTML = `${Frank.name} is really happy you played with them. <br /> Go ahead and play with them some more.`;
     }
-    
+
+    if(Frank.happiness < 58){
+            document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie005.png'>";
+            document.getElementById("results").innerHTML = `${Frank.name} says, <br /> "Play with me, Master! <br /> Please!"`;
+    }
+
     if(Frank.happiness < 28){
         document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie005.png'>";
         document.getElementById("results").textContent = `${Frank.name} really needs some attention.`;
     }
 
-    if(Frank.happiness < 58){
+    if(Frank.fatigue > 80){
         document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie005.png'>";
-        document.getElementById("results").textContent = `${Frank.name} says, "Play with me, Master! <br /> Please!`;
+        document.getElementById("results").textContent = `${Frank.name} needs some rest.`;
     }
 
-    if(Frank.happiness > 85){
-        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie004.png'>";
-        document.getElementById("results").textContent = `${Frank.name} is really happy you played with them. <br /> Go ahead and play with them some more.`;
-    }
+    
 
     if(Frank.hunger < 15){
         document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie004.png'>";
-        document.getElementById("results").textContent = `${Frank.name} is feeling supercharged! <br />More food, master!`;
-    }
-
-    if(Frank.hunger == 100){
-        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie007.png'>";
-        document.getElementById("results").textContent = `${Frank.name} is dead. Way to go, Fronk'N'Steen!`;
-        clearInterval(interval);
-    }
-
-    if(Frank.age == 100 && Frank.hunger < 2 && Frank.fatigue < 15 && Frank.happiness > 65){
-        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie010.png'>";
-        document.getElementById("results").textContent = `${Frank.name} has morphed into Superfrank! <br /> GOOD JOB, DOCTOR!`;
-        clearInterval(interval);
+        document.getElementById("results").innerHTML = `${Frank.name} is feeling supercharged! <br />More food, master!`;
     }
 
    
 
-    
+    if(Frank.age === 100 && Frank.hunger != 100 && Frank.fatigue != 100 && Frank.happiness != 0){
+        scoreLimits();
+        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie012.png'>";
+        document.getElementById("results").innerHTML = `You did okay, I guess. <br />They're not gonna tear up the <br />countryside, but that's probably a good thing.`;
+        clearInterval(interval);
+        buttonsOff();
+    }
+
+    if(Frank.hunger === 100 || Frank.fatigue === 100 || Frank.happiness === 0){
+        scoreLimits();
+        deadMonster();
+        clearInterval(interval);
+        buttonsOff();
+
+    }
+
+    if(Frank.age === 100 && Frank.hunger < 5 && Frank.fatigue < 15 && Frank.happiness > 65){
+        scoreLimits();
+        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie010.png'>";
+        document.getElementById("results").innerHTML = `${Frank.name} has transformed into Super${Frank.name}! <br /> GOOD JOB, DOCTOR!`;
+        clearInterval(interval);
+        buttonsOff();
+    }
+
         
-      }, 1500);
+      }, 1000);
 
       document.getElementById("charWindow").innerHTML = "<img  id='charImg' src='img/frankie001.png'>";
 
 }
 
 
-//CREATE button STARTS the game
-let create = document.getElementById("spawn");
-create.addEventListener("click", spawnGame);
 
-//PLAY keeps your monster's morale (happiness) high
-let entertain = document.getElementById("play");
-entertain.addEventListener("click", playFrank)
 
-//SNACKS are the most direct way of keeping their
-//health high, by keeping hunger low
-let giveSnack = document.getElementById("snack");
-giveSnack.addEventListener("click", feedFrank)
 
-//SLEEP reduces monster fatigue and also lets their
-//health recover during
-let put2Bed = document.getElementById("lights_out");
-put2Bed.addEventListener("click", put2Sleep)
-
-let wakey = document.getElementById("lights_on");
-wakey.addEventListener("click", wakeUp)
 
 //IF - at the end of your stewardship of your creature (age),
 //they're health is at least %98.5, power (anti-fatigue) is 

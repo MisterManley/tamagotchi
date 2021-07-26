@@ -1,7 +1,19 @@
-# HYPERTEXT TAMAGOTCHI :japanese_goblin:
+# LITTLE FRANKENSLIME :japanese_goblin:
 
 
-Fun for the whole family...
+Fun for the whole family... you have been gifted your own pint-sized Frankenstein's monster!
+
+## Instructions
+
+Before you play with your Little Frankenstein, you'll need to click the big green button that says IT'S ALIVE!
+
+### Now You're Playing
+
+All you need to do is click on the buttons PLAY (to play games with Frank and offer them encouragement), SNACK (to give Frank hot dogs... or "Franks." See what I did there?), LIGHTS (to put Frank to bed and lose fatigue points. Warning: you can't feed or play with Frank while they're alseep, so...) and WAKE UP! (to reactive the feed and play buttons).
+
+You'll only have a hundred seconds, but there's a special bonus for folks who properly feed and give attention to their monster and make sure they get plenty of rest.
+
+But that's a secret...
 
 ## Specifications
 * Create a repo for your tamagotchi pet
@@ -28,8 +40,16 @@ Fun for the whole family...
 * Add an exercise() method to your tamagotchi, that affects certain properties
 * Add anything you can think of... use your imagination!
 
-## How I approached the Project
+## How I Approached the Project and What I Learned
 
-Ultimately, I wanted to make this a cute but function game that was cel phone accessible in terms of portrait size (roughly 640 x 360 pixels). Some things that come in mind were...
+Ultimately, I wanted to make this a cute but functional game that was cel phone accessible in terms of portrait size (roughly 640 x 360 pixels). Some things that come in mind were...
 
-* Making the indicator 
+* Making the indicators for health(hunger), morale(happiness) and fatigue and sleep numeric instead of bars.
+* Trying to keep things simple. This consisted of:
+   * Keeping IF statements simple, with else ifs and elses.
+   * I had a really crazy notion, seeing as we just learned about objects, that I should cram as many methods (internal functions) into the object as possible. This made them harder to call, not easier.
+* Use of functions and conditions got much easier by calling them by their instantiation name (Frank) and using "Frank." -prefaced variables and function calls, since the instantiation created a specific object that functions and conditionals could call.
+* As things progressed, they got simpler and I think I gained a better understanding of the relationships between all of these containers. The watchword was "simplicity," which I tried to stick to throughout this project.
+
+
+

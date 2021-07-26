@@ -52,12 +52,13 @@ h1{
     align-items: center;
     opacity: 70%;
     border-radius: 40%;
+    line-height: 30px;
 
 }
 
 .indibox span{
     font-size: 20px;
-    line-height: 40px;
+    line-height: 30px;
 }
 
 
@@ -106,5 +107,41 @@ button{
     font-size: 24px;
     text-align: center;
     text-shadow: .5px .5px rgb(138, 75, 75);
+}
+
+@media only screen and (max-width: 576px){
+    
+        #charWindow{
+            height: 460px;
+            width: 300px;
+        }
+        #charImg{
+                width: 285px;
+                height: 285px;
+                display: block;
+                margin: 25% 5%;
+                opacity: 100%;
+                
+            }
+           
+            
+        }
+
+        .indibox{
+            display:block;
+            height: 65px;
+            width: 75px;
+            margin: 0 8px;
+            text-align: center;
+            font-family: 'Krona One', sans-serif;
+            background-color: black;
+            justify-content: center;
+            align-items: center;
+            opacity: 80%;
+            border-radius: 40%;
+            line-height: 25px;
+        
+        }
+
 }
 
