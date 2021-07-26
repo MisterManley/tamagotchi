@@ -33,6 +33,8 @@ function scoreLimits(){
     if (Frank.age > 99){
         Frank.age = 100
     }
+
+    
 }
 
 // ^ Limits counters to the range of 0 to 100
@@ -47,24 +49,20 @@ class monster {
             this.age = age;
     }
 
-    
-
-
-
 
 
 } //end MONSTER
 
-happyScore.textContent = this.happiness;
-hungerScore.textContent = this.hunger;
-ageCounter.textContent = this.age;
-fatigueScore.textContent = this.fatigue;
+// happyScore.textContent = this.happiness;
+// hungerScore.textContent = this.hunger;
+// ageCounter.textContent = this.age;
+// fatigueScore.textContent = this.fatigue;
 
 
 
 function feedFrank(){
     Frank.hunger--; 
-    document.getElementById("hunger_score").textContent = Frank.hunger;
+    document.getElementById("hunger_score").textContent = Frank.hunger.toFixed();
     scoreLimits();
 
         
@@ -73,7 +71,7 @@ function feedFrank(){
 function playFrank(){
 
     Frank.happiness++; 
-    document.getElementById("happy_score").textContent = Frank.happiness;
+    document.getElementById("happy_score").textContent = Frank.happiness.toFixed();
     scoreLimits();
         
         
@@ -82,7 +80,8 @@ function playFrank(){
 
 function put2Sleep(){
     
-    document.getElementById("fatigue_score").textContent = Frank.fatigue
+    document.getElementById("fatigue_score").textContent = Frank.fatigue.toFixed()
+    
     entertain.disabled = true;
     giveSnack.disabled = true;
 
@@ -92,9 +91,10 @@ function put2Sleep(){
         Frank.happiness += 1.55
     
         scoreLimits();
-        
+       
     
     }, 1400)
+        document.getElementById("charWindow").innerHTML = "<img  id='charImg' src='img/frankie009.png'>";
     
     scoreLimits();
 
@@ -106,22 +106,15 @@ function put2Sleep(){
 
 function wakeUp(){
 
+    
     Frank.fatigue++
     entertain.disabled = false;
     giveSnack.disabled = false;
     clearInterval(sleepyMonster);
+    document.getElementById("charWindow").innerHTML = "<img  id='charImg' src='img/frankie002.png'>";
     scoreLimits();
 
 }
-
-
-
-
-
-
-
-
-
 
 
 
@@ -138,12 +131,12 @@ function spawnGame(name){        //passive game engine reduces or increases
         Frank.age++;
 
         //Puts score and age elements into the monster call
-        document.getElementById("happy_score").textContent = Frank.happiness;
-        document.getElementById("hunger_score").textContent = Frank.hunger;
-        document.getElementById("fatigue_score").textContent = Frank.fatigue;
+        document.getElementById("happy_score").textContent = Frank.happiness.toFixed();
+        document.getElementById("hunger_score").textContent = Frank.hunger.toFixed();
+        document.getElementById("fatigue_score").textContent = Frank.fatigue.toFixed();
         document.getElementById("evol_score").textContent = Frank.age;
         
-        document.getElementById("charWindow").innerHTML = "<img  id='charImg' src='img/frankie001.png'>";
+        
     
         // display the new count on the page
 
@@ -164,18 +157,23 @@ function spawnGame(name){        //passive game engine reduces or increases
     }
     
     if(Frank.fatigue > 80){
-        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie008.png'>";
+        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie005.png'>";
         document.getElementById("results").textContent = `${Frank.name} needs some rest.`;
     }
     
     if(Frank.happiness < 28){
-        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie003.png'>";
-        document.getElementById("results").textContent = `${Frank.name} needs some attention.`;
+        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie005.png'>";
+        document.getElementById("results").textContent = `${Frank.name} really needs some attention.`;
+    }
+
+    if(Frank.happiness < 58){
+        document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie005.png'>";
+        document.getElementById("results").textContent = `${Frank.name} says, "Play with me, Master`;
     }
 
     if(Frank.happiness > 85){
         document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie004.png'>";
-        document.getElementById("results").textContent = `${Frank.name} is really happy you played with them.`;
+        document.getElementById("results").textContent = `${Frank.name} is really happy you played with them. Go ahead and play with them some more.`;
     }
 
     if(Frank.hunger < 15){
@@ -191,23 +189,17 @@ function spawnGame(name){        //passive game engine reduces or increases
 
     if(Frank.age == 100 && Frank.hunger < 2 && Frank.fatigue < 15 && Frank.happiness > 65){
         document.getElementById("charWindow").innerHTML = "<img id='charImg' src='img/frankie010.png'>";
-        document.getElementById("results").textContent = `${Frank.name} has morphed into Superfrank! GOOD JOB, DOCTOR!`;
+        document.getElementById("results").textContent = `${Frank.name} has morphed into Superfrank! <br /> GOOD JOB, DOCTOR!`;
         clearInterval(interval);
     }
 
+   
 
-
-     
     
-    
-    
-    
-
-        
         
       }, 1500);
 
-
+      document.getElementById("charWindow").innerHTML = "<img  id='charImg' src='img/frankie001.png'>";
 
 }
 

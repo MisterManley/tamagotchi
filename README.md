@@ -9,9 +9,9 @@ Fun for the whole family...
 * Instantiate your Tamagotchi
 * Display a character of your choice on the screen to represent your pet
 * Display the following metrics for your pet:
-   * Hunger (1-10 scale)
-   * Sleepiness (1-10 scale)
-   * Boredom (1-10 scale)
+   * Hunger (1-10 scale)  -- changed to 100 scale percentages
+   * Sleepiness (1-10 scale) -- changed to 100 scale percentages
+   * Boredom (1-10 scale) -- changed to 100 scale percentages
 * Age
 * Add buttons to the screen to feed your pet, turn off the lights, and play with your pet.
 * Add the ability to name your pet.
@@ -27,3 +27,9 @@ Fun for the whole family...
 * ...with special powers (extend the class)!
 * Add an exercise() method to your tamagotchi, that affects certain properties
 * Add anything you can think of... use your imagination!
+
+## How I approached the Project
+
+Ultimately, I wanted to make this a cute but function game that was cel phone accessible in terms of portrait size (roughly 640 x 360 pixels). Some things that come in mind were...
+
+* Making the indicator 
