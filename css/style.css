@@ -61,6 +61,11 @@ h1{
     line-height: 30px;
 }
 
+p{
+    text-align: center;
+    font-family: 'Krona One', sans-serif;
+}
+
 
 #spawn{
     background-color: darkgreen;
