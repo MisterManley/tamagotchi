@@ -1,4 +1,10 @@
 
+// setting initial methods for getting data from 
+//(and pushing to) the webpage
+//Also, "Frank" is initialized but doesn't give itself any data
+//It will be called as it is initialized as the name of the function
+//that is the instance of the monster class (coming up a bit later)
+
 let happyScore = document.getElementById("happy_score");
 let hungerScore = document.getElementById("hunger_score");
 let fatigueScore = document.getElementById("fatigue_score");
@@ -26,6 +32,9 @@ put2Bed.addEventListener("click", put2Sleep)
 let wakey = document.getElementById("lights_on");
 wakey.addEventListener("click", wakeUp)
 
+//Allows developer to turn off non-game-start buttons
+//so the game doesn't add/subtract values from the monster's
+//health
 function buttonsOff(){
     entertain.disabled = true;
     giveSnack.disabled = true;
@@ -33,6 +42,7 @@ function buttonsOff(){
     wakey.disabled = true;
 }
 
+//Likewise, this turns the game action buttons back on
 function buttonsOn(){
 entertain.disabled = false;
 giveSnack.disabled = false;
@@ -40,6 +50,8 @@ put2Bed.disabled = false;
 wakey.disabled = false;
 }
 
+// Without this function, score would run over 100 
+// in scoring, or run under 0.
 function scoreLimits(){
     if(Frank.happiness >= 100){
         Frank.happiness = 99;
@@ -74,9 +86,11 @@ function scoreLimits(){
     
 }
 
+// Keeps the action buttons from running before the start 
+// of the game
 buttonsOff();
 
-// ^ Limits counters to the range of 0 to 100
+
 
 class monster {
     constructor(name, hunger, fatigue, happiness, age){
@@ -98,6 +112,8 @@ class monster {
 // fatigueScore.textContent = this.fatigue;
 
 
+//increases Frank's health, but must be tapped repeatedly 
+// to outrun the health-subtraction counter.
 
 function feedFrank(){
     Frank.hunger--; 
@@ -108,7 +124,8 @@ function feedFrank(){
     scoreLimits();      
 }
 
-
+//increases Frank's happiness, but must be tapped repeatedly 
+// to outrun the happiness-subtraction counter.
 
 function playFrank(){
 
@@ -121,10 +138,18 @@ function playFrank(){
     
 }
 
+//Puts Frank to sleep, ticking off positive numbers 
+//to reduce his fatigue, and slow down the hunger and happiness timer
+//by using sleep as a method for actually increasing happiness 
+// (I know I wake up happy) and slightly reducing hunger
+
 function put2Sleep(){
     
     document.getElementById("fatigue_score").textContent = Frank.fatigue.toFixed(2);
+   
     
+//disables only the PLAY and SNACK buttons, because you can't
+//feed or play with your monster while he's asleep    
     entertain.disabled = true;
     giveSnack.disabled = true;
 
@@ -144,9 +169,13 @@ function put2Sleep(){
 
 }
 
-//So, the original toggle idea didn't work, but adding a second button  
+//So, the original toggle idea for LIGHTS(sleep) didn't work, 
+//but adding a second button  
 //for waking Frank up with the right code (see below) gets the feed
 //and play buttons working again
+
+//Also, it passive turns control for hunger and happiness back over to
+//the main counter since "sleepyMonster" is cleared
 
 function wakeUp(){
 
@@ -168,6 +197,11 @@ function deadMonster(){
 }
 
 
+
+//Activates the main counter and starts the game with a fresh and
+//(presumably) happy Frank. I could've also added functionality
+//to name the monster, but the pictures are all Frankenstein
+//and, as a Homunculus, I decided their pronouns were "they/them."
 
 function spawnGame(name){        
 
@@ -270,15 +304,3 @@ function spawnGame(name){
 
 
 
-//IF - at the end of your stewardship of your creature (age),
-//they're health is at least %98.5, power (anti-fatigue) is 
-//more than 75% (less than %25) and happiness is at least %80, your creature 
-//will morph into SuperStompy Frank
-
-
-//////// - deployment notes - ////////
-
-//$ git checkout -b gh-pages
-//$ git push origin gh-pages
-
-//https://<user-name>.github.io/tamagotchi
